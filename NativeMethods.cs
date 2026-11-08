@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Glass2k;
 
@@ -58,6 +59,9 @@ internal static class NativeMethods
     [DllImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     internal static extern bool IsWindowVisible(IntPtr window);
+
+    [DllImport("user32.dll", EntryPoint = "GetClassNameW", CharSet = CharSet.Unicode, SetLastError = true)]
+    internal static extern int GetClassName(IntPtr window, StringBuilder className, int maxCount);
 
     [DllImport("user32.dll", EntryPoint = "GetWindowLongW", SetLastError = true)]
     internal static extern int GetWindowLong(IntPtr window, int index);

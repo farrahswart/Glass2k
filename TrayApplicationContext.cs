@@ -60,11 +60,11 @@ internal sealed class TrayApplicationContext : ApplicationContext
 
     private void SetOpacity(int opacityPercent)
     {
-        var window = foregroundWindowTracker.LastExternalWindow;
+        var window = foregroundWindowTracker.GetMostRecentVisibleWindow();
         if (window == IntPtr.Zero)
         {
             MessageBox.Show(
-                "Activate the window you want to change, then choose an opacity level from the Glass2k tray menu.",
+                "Activate a visible app window, then choose an opacity level from the Glass2k tray menu.",
                 "No active window",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
